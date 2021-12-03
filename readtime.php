@@ -4,13 +4,12 @@ function CalculateReadTime ($targetString) {
     // return a reading time in whole minutes
     
     $targetString = strip_tags($targetString);
-    $wordNumber = str_word_count($targetString);
+    
     // average reading rate is around 200 WPM
-    $totalTime = $wordNumber / 200;
-    // turn result into an integer and that's minutes
-    $baseMinutes = (int)$totalTime;
+    $baseMinutes = floor(str_word_count($targetString) / 200);
+    
     // calculate the number of seconds based on the decimal place
-    $baseSeconds = ($totalTime - $baseMinutes) * 60;
+    $baseSeconds = ((str_word_count($targetString) / 200) - $baseMinutes) * 60;
 
     // round up if over 30 seconds
     if ($baseSeconds > 30) {
